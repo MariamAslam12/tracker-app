@@ -128,3 +128,4041 @@
     @apply font-sans;
     }
 }
+
+/* =========================================
+   STUDENT ATTENDANCE TRACKER
+   ========================================= */
+
+.attendance-page {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #050816;
+  color: white;
+  padding: 40px 20px;
+}
+
+/* =========================================
+   CINEMATIC BACKGROUND
+   ========================================= */
+
+.attendance-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+
+  background-image: url("/attendance-bg.png");
+  background-size: cover;
+  background-position: center;
+
+  animation: cinematicZoom 18s ease-in-out infinite alternate;
+}
+
+.background-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at 70% 45%,
+      rgba(91, 61, 246, 0.25),
+      transparent 35%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(3, 6, 20, 0.97) 0%,
+      rgba(4, 8, 25, 0.88) 40%,
+      rgba(5, 8, 22, 0.65) 100%
+    );
+}
+
+/* =========================================
+   CINEMATIC MOVEMENT
+   ========================================= */
+
+@keyframes cinematicZoom {
+  0% {
+    transform: scale(1);
+    background-position: 50% 50%;
+  }
+
+  50% {
+    transform: scale(1.04);
+    background-position: 52% 48%;
+  }
+
+  100% {
+    transform: scale(1.08);
+    background-position: 48% 52%;
+  }
+}
+
+/* =========================================
+   GRID
+   ========================================= */
+
+.background-grid {
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    linear-gradient(
+      rgba(130, 100, 255, 0.04) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(130, 100, 255, 0.04) 1px,
+      transparent 1px
+    );
+
+  background-size: 50px 50px;
+
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 30%,
+    black 70%,
+    transparent
+  );
+
+  animation: gridMove 12s linear infinite;
+}
+
+@keyframes gridMove {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(50px);
+  }
+}
+
+/* =========================================
+   FLOATING PARTICLES
+   ========================================= */
+
+.particle {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: #8b7cff;
+
+  box-shadow:
+    0 0 10px #6d5dfc,
+    0 0 25px rgba(110, 90, 255, 0.8);
+
+  animation: floatParticle 7s ease-in-out infinite;
+}
+
+.particle-one {
+  top: 15%;
+  left: 12%;
+}
+
+.particle-two {
+  top: 25%;
+  left: 80%;
+  animation-delay: 1s;
+}
+
+.particle-three {
+  top: 70%;
+  left: 15%;
+  animation-delay: 2s;
+}
+
+.particle-four {
+  top: 80%;
+  left: 85%;
+  animation-delay: 3s;
+}
+
+.particle-five {
+  top: 40%;
+  left: 92%;
+  animation-delay: 1.5s;
+}
+
+.particle-six {
+  top: 10%;
+  left: 55%;
+  animation-delay: 4s;
+}
+
+@keyframes floatParticle {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.4;
+  }
+
+  50% {
+    transform: translateY(-35px) scale(1.5);
+    opacity: 1;
+  }
+}
+
+/* =========================================
+   MAIN CONTAINER
+   ========================================= */
+
+.attendance-container {
+  position: relative;
+  z-index: 5;
+
+  width: 100%;
+  max-width: 560px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* =========================================
+   TOP BADGE
+   ========================================= */
+
+.top-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 8px 15px;
+
+  border: 1px solid rgba(139, 124, 255, 0.35);
+
+  border-radius: 999px;
+
+  background: rgba(30, 25, 80, 0.4);
+
+  backdrop-filter: blur(15px);
+
+  color: #b9b0ff;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 0.15em;
+
+  box-shadow:
+    0 0 25px rgba(93, 76, 255, 0.12);
+}
+
+/* =========================================
+   HEADING
+   ========================================= */
+
+.attendance-heading {
+  text-align: center;
+  margin: 22px 0 28px;
+}
+
+.attendance-heading h1 {
+  margin: 0;
+
+  font-size: clamp(34px, 6vw, 52px);
+
+  font-weight: 800;
+
+  letter-spacing: -0.04em;
+
+  line-height: 1.05;
+}
+
+.attendance-heading h1 span {
+  background: linear-gradient(
+    90deg,
+    #8c7cff,
+    #c4bbff,
+    #7c6cff
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+
+  background-size: 200% auto;
+
+  animation: gradientText 5s linear infinite;
+}
+
+@keyframes gradientText {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.attendance-heading p {
+  margin-top: 12px;
+
+  color: #a5abc5;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+
+  max-width: 450px;
+}
+
+/* =========================================
+   CARD
+   ========================================= */
+
+.attendance-card {
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  border-radius: 28px !important;
+
+  border: 1px solid rgba(151, 137, 255, 0.2) !important;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(18, 22, 50, 0.88),
+      rgba(8, 11, 28, 0.92)
+    ) !important;
+
+  backdrop-filter: blur(25px);
+
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.45),
+    0 0 80px rgba(83, 66, 220, 0.12);
+
+  color: white !important;
+}
+
+.card-glow {
+  position: absolute;
+
+  width: 220px;
+  height: 220px;
+
+  top: -120px;
+  right: -80px;
+
+  border-radius: 50%;
+
+  background: #6251ff;
+
+  filter: blur(100px);
+
+  opacity: 0.18;
+
+  pointer-events: none;
+}
+
+/* =========================================
+   CARD HEADER
+   ========================================= */
+
+.attendance-card-header {
+  display: flex !important;
+
+  flex-direction: row;
+
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 26px 26px 12px !important;
+}
+
+.title-icon {
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 14px;
+
+  background: linear-gradient(
+    135deg,
+    #6655ff,
+    #4030ba
+  );
+
+  color: white;
+
+  box-shadow:
+    0 8px 25px rgba(91, 61, 246, 0.35);
+}
+
+.attendance-card-title {
+  color: white !important;
+
+  font-size: 20px !important;
+
+  font-weight: 700 !important;
+}
+
+.attendance-card-subtitle {
+  margin-top: 3px;
+
+  color: #858ca8;
+
+  font-size: 12px;
+}
+
+/* =========================================
+   CONTENT
+   ========================================= */
+
+.attendance-card-content {
+  padding: 20px 26px 28px !important;
+}
+
+/* =========================================
+   INPUT
+   ========================================= */
+
+.input-section label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #c4c8dc;
+
+  font-size: 13px;
+
+  font-weight: 600;
+}
+
+.input-wrapper {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+}
+
+.input-icon {
+  position: absolute;
+
+  left: 14px;
+
+  z-index: 2;
+
+  color: #7770c8;
+
+  pointer-events: none;
+}
+
+.student-input {
+  height: 48px !important;
+
+  padding-left: 42px !important;
+
+  border-radius: 13px !important;
+
+  border: 1px solid rgba(130, 120, 210, 0.2) !important;
+
+  background: rgba(7, 10, 28, 0.7) !important;
+
+  color: white !important;
+
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+.student-input::placeholder {
+  color: #666c85 !important;
+}
+
+.student-input:focus {
+  border-color: #7768ff !important;
+
+  box-shadow:
+    0 0 0 3px rgba(119, 104, 255, 0.12),
+    0 0 25px rgba(91, 61, 246, 0.15) !important;
+
+  transform: translateY(-1px);
+}
+
+.focus-button {
+  height: 48px !important;
+
+  border-radius: 13px !important;
+
+  border-color: rgba(130, 120, 210, 0.3) !important;
+
+  background: rgba(45, 39, 92, 0.5) !important;
+
+  color: #c7c1ff !important;
+
+  transition: all 0.3s ease;
+}
+
+.focus-button:hover {
+  background: rgba(91, 61, 246, 0.2) !important;
+
+  border-color: #7768ff !important;
+
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   GREETING
+   ========================================= */
+
+.student-greeting {
+  margin-top: 12px;
+
+  padding: 10px 13px;
+
+  border-radius: 10px;
+
+  background: rgba(91, 61, 246, 0.08);
+
+  border: 1px solid rgba(91, 61, 246, 0.12);
+
+  color: #9299b5;
+
+  font-size: 13px;
+}
+
+.student-greeting strong {
+  color: #b8afff;
+}
+
+/* =========================================
+   ATTENDANCE DISPLAY
+   ========================================= */
+
+.attendance-display {
+  position: relative;
+
+  margin-top: 22px;
+
+  padding: 26px 20px;
+
+  overflow: hidden;
+
+  text-align: center;
+
+  border-radius: 20px;
+
+  border: 1px solid rgba(122, 108, 255, 0.2);
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(92, 72, 255, 0.12),
+      transparent 65%
+    ),
+    rgba(7, 10, 29, 0.75);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.attendance-display::before {
+  content: "";
+
+  position: absolute;
+
+  top: -100px;
+  left: -100px;
+
+  width: 200px;
+  height: 200px;
+
+  border-radius: 50%;
+
+  background: #6355ff;
+
+  filter: blur(100px);
+
+  opacity: 0.12;
+
+  animation: displayGlow 5s ease-in-out infinite alternate;
+}
+
+@keyframes displayGlow {
+  from {
+    transform: translate(0, 0);
+  }
+
+  to {
+    transform: translate(80px, 80px);
+  }
+}
+
+.attendance-label {
+  color: #858ba6;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.2em;
+}
+
+.attendance-number {
+  margin: 5px 0;
+
+  font-size: 72px;
+
+  line-height: 1;
+
+  font-weight: 800;
+
+  background: linear-gradient(
+    135deg,
+    #ffffff,
+    #a69bff
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+
+  text-shadow:
+    0 0 35px rgba(124, 108, 255, 0.25);
+}
+
+.attendance-status {
+  color: #a6abc0;
+
+  font-size: 13px;
+
+  font-weight: 500;
+}
+
+/* =========================================
+   PROGRESS
+   ========================================= */
+
+.progress-container {
+  margin-top: 20px;
+
+  text-align: left;
+}
+
+.progress-label {
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-bottom: 7px;
+
+  color: #737a98;
+
+  font-size: 10px;
+
+  font-weight: 600;
+}
+
+.progress-track {
+  width: 100%;
+
+  height: 6px;
+
+  overflow: hidden;
+
+  border-radius: 100px;
+
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.progress-bar {
+  height: 100%;
+
+  min-width: 0;
+
+  border-radius: inherit;
+
+  background: linear-gradient(
+    90deg,
+    #5948ef,
+    #9b8fff
+  );
+
+  box-shadow:
+    0 0 15px rgba(99, 80, 255, 0.65);
+}
+
+/* =========================================
+   CONTROL BUTTONS
+   ========================================= */
+
+.attendance-controls {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 12px;
+
+  margin-top: 18px;
+}
+
+.button-container {
+  width: 100%;
+}
+
+.present-button,
+.remove-button {
+  width: 100%;
+
+  height: 50px !important;
+
+  border-radius: 14px !important;
+
+  font-weight: 700 !important;
+
+  transition: box-shadow 0.3s ease;
+}
+
+.present-button {
+  background: linear-gradient(
+    135deg,
+    #16a36a,
+    #087b4e
+  ) !important;
+
+  box-shadow:
+    0 10px 25px rgba(16, 185, 129, 0.15);
+}
+
+.present-button:hover {
+  box-shadow:
+    0 12px 30px rgba(16, 185, 129, 0.3);
+}
+
+.remove-button {
+  background: linear-gradient(
+    135deg,
+    #dc4655,
+    #9d2635
+  ) !important;
+
+  box-shadow:
+    0 10px 25px rgba(220, 70, 85, 0.12);
+}
+
+/* =========================================
+   RESET
+   ========================================= */
+
+.reset-button {
+  width: 100%;
+
+  height: 45px !important;
+
+  margin-top: 12px;
+
+  border: 1px solid rgba(130, 120, 210, 0.16) !important;
+
+  border-radius: 12px !important;
+
+  color: #777e9a !important;
+
+  transition: all 0.3s ease;
+}
+
+.reset-button:hover {
+  color: white !important;
+
+  background: rgba(91, 61, 246, 0.08) !important;
+
+  border-color: rgba(119, 104, 255, 0.3) !important;
+}
+
+/* =========================================
+   BOTTOM STATUS
+   ========================================= */
+
+.bottom-caption {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 20px;
+
+  color: #666d87;
+
+  font-size: 11px;
+
+  letter-spacing: 0.04em;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #36d399;
+
+  box-shadow:
+    0 0 10px #36d399;
+
+  animation: statusPulse 2s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.35);
+  }
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 600px) {
+  .attendance-page {
+    padding: 25px 14px;
+  }
+
+  .attendance-heading h1 {
+    font-size: 38px;
+  }
+
+  .attendance-heading p {
+    font-size: 13px;
+  }
+
+  .attendance-card {
+    border-radius: 22px !important;
+  }
+
+  .attendance-card-header {
+    padding: 20px 18px 10px !important;
+  }
+
+  .attendance-card-content {
+    padding: 18px !important;
+  }
+
+  .input-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .student-input {
+    width: 100%;
+  }
+
+  .focus-button {
+    width: 100%;
+  }
+
+  .attendance-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .attendance-number {
+    font-size: 62px;
+  }
+
+  .top-badge {
+    font-size: 9px;
+  }
+}
+
+/* =========================================
+   REDUCE MOTION FOR ACCESSIBILITY
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* =====================================================
+   SHOPPING QUANTITY TRACKER
+   Cinematic E-Commerce UI
+   ===================================================== */
+
+.shopping-page {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 45px 20px;
+
+  background: #080515;
+
+  color: white;
+}
+
+
+/* =====================================================
+   CINEMATIC BACKGROUND
+   ===================================================== */
+
+.shopping-background {
+  position: fixed;
+  inset: 0;
+
+  overflow: hidden;
+
+  z-index: 0;
+}
+
+
+/*
+   Real headphones image.
+
+   This image is from Unsplash and is used as
+   the cinematic shopping background.
+*/
+
+.shopping-background-image {
+  position: absolute;
+  inset: -5%;
+
+  background-image: url("https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=2000&q=85");
+
+  background-size: cover;
+  background-position: center;
+
+  filter:
+    saturate(1.15)
+    contrast(1.05);
+
+  transform: scale(1.05);
+
+  animation:
+    shoppingCinematicZoom
+    18s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+
+@keyframes shoppingCinematicZoom {
+
+  0% {
+    transform: scale(1.05);
+    background-position: 48% 50%;
+  }
+
+  50% {
+    transform: scale(1.11);
+    background-position: 53% 47%;
+  }
+
+  100% {
+    transform: scale(1.06);
+    background-position: 47% 53%;
+  }
+
+}
+
+
+/* =====================================================
+   DARK CINEMATIC OVERLAY
+   ===================================================== */
+
+.shopping-background-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at 70% 40%,
+      rgba(145, 73, 255, 0.22),
+      transparent 35%
+    ),
+
+    radial-gradient(
+      circle at 20% 70%,
+      rgba(255, 150, 60, 0.13),
+      transparent 30%
+    ),
+
+    linear-gradient(
+      90deg,
+      rgba(7, 3, 20, 0.94),
+      rgba(10, 5, 27, 0.78),
+      rgba(6, 3, 17, 0.88)
+    );
+
+  backdrop-filter: blur(2px);
+}
+
+
+/* =====================================================
+   MOVING LIGHT EFFECT
+   ===================================================== */
+
+.shopping-light {
+  position: absolute;
+
+  width: 400px;
+  height: 400px;
+
+  border-radius: 50%;
+
+  filter: blur(100px);
+
+  opacity: 0.22;
+
+  pointer-events: none;
+
+  animation:
+    shoppingLightMove
+    10s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+
+.shopping-light-one {
+  top: -180px;
+  left: -100px;
+
+  background: #914dff;
+}
+
+
+.shopping-light-two {
+  right: -180px;
+  bottom: -150px;
+
+  background: #ff8a3d;
+
+  animation-delay: 2s;
+}
+
+
+@keyframes shoppingLightMove {
+
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(80px, 50px) scale(1.15);
+  }
+
+  100% {
+    transform: translate(-30px, 100px) scale(0.9);
+  }
+
+}
+
+
+/* =====================================================
+   FLOATING PARTICLES
+   ===================================================== */
+
+.shopping-particle {
+  position: absolute;
+
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: #d5baff;
+
+  box-shadow:
+    0 0 12px #a56cff,
+    0 0 25px rgba(165, 108, 255, 0.7);
+
+  animation:
+    shoppingParticleFloat
+    7s
+    ease-in-out
+    infinite;
+}
+
+
+.particle-1 {
+  top: 15%;
+  left: 10%;
+}
+
+
+.particle-2 {
+  top: 30%;
+  left: 85%;
+
+  animation-delay: 1s;
+}
+
+
+.particle-3 {
+  top: 75%;
+  left: 12%;
+
+  animation-delay: 2s;
+}
+
+
+.particle-4 {
+  top: 80%;
+  left: 90%;
+
+  animation-delay: 3s;
+}
+
+
+.particle-5 {
+  top: 20%;
+  left: 60%;
+
+  animation-delay: 4s;
+}
+
+
+.particle-6 {
+  top: 60%;
+  left: 75%;
+
+  animation-delay: 1.5s;
+}
+
+
+@keyframes shoppingParticleFloat {
+
+  0%,
+  100% {
+    transform:
+      translateY(0)
+      scale(1);
+
+    opacity: 0.35;
+  }
+
+  50% {
+    transform:
+      translateY(-35px)
+      scale(1.5);
+
+    opacity: 1;
+  }
+
+}
+
+
+/* =====================================================
+   MAIN CONTAINER
+   ===================================================== */
+
+.shopping-container {
+  position: relative;
+
+  z-index: 5;
+
+  width: 100%;
+
+  max-width: 580px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+}
+
+
+/* =====================================================
+   TOP BADGE
+   ===================================================== */
+
+.shopping-top-badge {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 8px 16px;
+
+  border-radius: 999px;
+
+  border: 1px solid
+    rgba(190, 145, 255, 0.28);
+
+  background:
+    rgba(45, 20, 80, 0.45);
+
+  backdrop-filter: blur(15px);
+
+  color: #d0b5ff;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.16em;
+
+  box-shadow:
+    0 0 30px
+    rgba(135, 75, 255, 0.12);
+}
+
+
+/* =====================================================
+   HEADING
+   ===================================================== */
+
+.shopping-heading {
+  text-align: center;
+
+  margin: 20px 0 28px;
+}
+
+
+.shopping-heading h1 {
+  margin: 0;
+
+  font-size:
+    clamp(34px, 6vw, 50px);
+
+  line-height: 1.05;
+
+  font-weight: 800;
+
+  letter-spacing: -0.045em;
+}
+
+
+.shopping-heading h1 span {
+
+  background:
+    linear-gradient(
+      90deg,
+      #a875ff,
+      #ffb36b,
+      #b991ff,
+      #a875ff
+    );
+
+  background-size: 250% auto;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+
+  animation:
+    shoppingGradient
+    5s
+    linear
+    infinite;
+}
+
+
+@keyframes shoppingGradient {
+
+  to {
+    background-position:
+      250% center;
+  }
+
+}
+
+
+.shopping-heading p {
+
+  margin:
+    12px auto 0;
+
+  max-width: 450px;
+
+  color: #aaa3bd;
+
+  font-size: 13px;
+
+  line-height: 1.6;
+}
+
+
+/* =====================================================
+   CARD WRAPPER
+   ===================================================== */
+
+.shopping-card-wrapper {
+  width: 100%;
+}
+
+
+/* =====================================================
+   MAIN CARD
+   ===================================================== */
+
+.shopping-card {
+
+  position: relative;
+
+  overflow: hidden;
+
+  width: 100%;
+
+  border-radius:
+    28px !important;
+
+  border:
+    1px solid
+    rgba(207, 164, 255, 0.22)
+    !important;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(22, 12, 42, 0.88),
+      rgba(7, 5, 20, 0.94)
+    ) !important;
+
+  backdrop-filter:
+    blur(28px);
+
+  box-shadow:
+
+    0 35px 90px
+    rgba(0, 0, 0, 0.55),
+
+    0 0 80px
+    rgba(130, 70, 255, 0.13);
+
+  color: white !important;
+}
+
+
+/* =====================================================
+   CARD GLOW
+   ===================================================== */
+
+.shopping-card-glow {
+
+  position: absolute;
+
+  width: 260px;
+  height: 260px;
+
+  top: -150px;
+  right: -80px;
+
+  border-radius: 50%;
+
+  background: #934cff;
+
+  filter: blur(100px);
+
+  opacity: 0.18;
+
+  pointer-events: none;
+}
+
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+
+.shopping-card-header {
+
+  position: relative;
+
+  display: flex !important;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  padding:
+    25px 26px 17px
+    !important;
+}
+
+
+.shopping-title-area {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+}
+
+
+.shopping-icon-box {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 46px;
+  height: 46px;
+
+  border-radius: 14px;
+
+  color: white;
+
+  background:
+    linear-gradient(
+      135deg,
+      #9652ff,
+      #5332c7
+    );
+
+  box-shadow:
+    0 10px 30px
+    rgba(139, 73, 255, 0.3);
+}
+
+
+.shopping-card-title {
+
+  color: white !important;
+
+  font-size:
+    19px !important;
+
+  font-weight:
+    750 !important;
+}
+
+
+.shopping-card-description {
+
+  margin-top: 3px;
+
+  color: #888198 !important;
+
+  font-size: 11px !important;
+}
+
+
+/* =====================================================
+   CART BADGE
+   ===================================================== */
+
+.shopping-cart-badge {
+
+  display: flex !important;
+
+  align-items: center;
+
+  gap: 6px;
+
+  padding: 7px 11px !important;
+
+  border-radius: 999px !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      #7545e8,
+      #a459ff
+    ) !important;
+
+  box-shadow:
+    0 8px 25px
+    rgba(129, 72, 255, 0.3);
+}
+
+
+.cart-count {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-width: 19px;
+  height: 19px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255,255,255,0.2);
+
+  font-size: 10px;
+}
+
+
+/* =====================================================
+   CARD CONTENT
+   ===================================================== */
+
+.shopping-card-content {
+
+  padding:
+    18px 26px 25px
+    !important;
+}
+
+
+/* =====================================================
+   INPUT SECTION
+   ===================================================== */
+
+.shopping-input-section {
+
+  margin-bottom: 12px;
+}
+
+
+.shopping-label-row {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin-bottom: 8px;
+}
+
+
+.shopping-label-row label {
+
+  color: #c8c2d5;
+
+  font-size: 12px;
+
+  font-weight: 600;
+}
+
+
+.shopping-focus-button {
+
+  height: 28px !important;
+
+  padding:
+    0 8px !important;
+
+  color: #b994ff !important;
+
+  font-size: 10px !important;
+}
+
+
+.shopping-focus-button:hover {
+
+  background:
+    rgba(145, 76, 255, 0.1)
+    !important;
+
+  color: #d2b7ff !important;
+}
+
+
+.shopping-input-wrapper {
+
+  position: relative;
+}
+
+
+.shopping-input-icon {
+
+  position: absolute;
+
+  z-index: 2;
+
+  left: 14px;
+
+  top: 50%;
+
+  transform:
+    translateY(-50%);
+
+  color: #8b68cc;
+
+  pointer-events: none;
+}
+
+
+.shopping-input {
+
+  height: 48px !important;
+
+  padding-left: 41px !important;
+
+  border-radius: 13px !important;
+
+  border:
+    1px solid
+    rgba(170, 125, 255, 0.18)
+    !important;
+
+  background:
+    rgba(7, 4, 21, 0.65)
+    !important;
+
+  color: white !important;
+
+  transition:
+    all 0.3s ease;
+}
+
+
+.shopping-input::placeholder {
+
+  color: #686174 !important;
+}
+
+
+.shopping-input:focus {
+
+  border-color:
+    #995dff !important;
+
+  box-shadow:
+
+    0 0 0 3px
+    rgba(153, 93, 255, 0.12),
+
+    0 0 30px
+    rgba(137, 74, 255, 0.12)
+    !important;
+}
+
+
+/* =====================================================
+   GREETING
+   ===================================================== */
+
+.shopping-greeting {
+
+  overflow: hidden;
+
+  margin:
+    10px 0 15px;
+
+  padding:
+    9px 12px;
+
+  border-radius: 10px;
+
+  border:
+    1px solid
+    rgba(157, 100, 255, 0.12);
+
+  background:
+    rgba(130, 65, 255, 0.06);
+
+  color: #90889e;
+
+  font-size: 12px;
+}
+
+
+.shopping-greeting strong {
+
+  color: #c1a2ff;
+}
+
+
+/* =====================================================
+   PRODUCT CARD
+   ===================================================== */
+
+.product-card {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  padding: 17px;
+
+  border-radius: 17px;
+
+  border:
+    1px solid
+    rgba(190, 150, 255, 0.17);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(37, 19, 63, 0.7),
+      rgba(13, 8, 30, 0.75)
+    );
+
+  box-shadow:
+    inset 0 1px 0
+    rgba(255,255,255,0.035);
+
+  transition:
+    border-color 0.3s ease;
+}
+
+
+.product-card:hover {
+
+  border-color:
+    rgba(184, 137, 255, 0.35);
+}
+
+
+.product-left {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+
+.product-icon {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 54px;
+  height: 54px;
+
+  flex-shrink: 0;
+
+  border-radius: 15px;
+
+  color: #d5b9ff;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(148, 72, 255, 0.3),
+      rgba(81, 45, 165, 0.35)
+    );
+
+  border:
+    1px solid
+    rgba(181, 131, 255, 0.2);
+
+  box-shadow:
+    0 8px 25px
+    rgba(130, 64, 255, 0.15);
+}
+
+
+.product-left h3 {
+
+  margin: 0;
+
+  color: #f5f2fa;
+
+  font-size: 14px;
+
+  font-weight: 700;
+}
+
+
+.product-left p {
+
+  margin-top: 4px;
+
+  color: #ffbf72;
+
+  font-size: 13px;
+
+  font-weight: 700;
+}
+
+
+.product-left p span {
+
+  color: #777080;
+
+  font-weight: 400;
+}
+
+
+.product-quantity {
+
+  text-align: right;
+}
+
+
+.product-quantity span {
+
+  display: block;
+
+  color: #746d80;
+
+  font-size: 9px;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.12em;
+}
+
+
+.product-quantity strong {
+
+  display: block;
+
+  margin-top: 2px;
+
+  color: #e9ddff;
+
+  font-size: 29px;
+
+  line-height: 1;
+
+  font-weight: 800;
+}
+
+
+/* =====================================================
+   QUANTITY CONTROLS
+   ===================================================== */
+
+.shopping-controls {
+
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 12px;
+
+  margin-top: 17px;
+}
+
+
+.shopping-controls > div {
+
+  width: 100%;
+}
+
+
+.remove-item-button,
+.add-item-button {
+
+  width: 100%;
+
+  height: 49px !important;
+
+  border-radius:
+    13px !important;
+
+  font-weight:
+    700 !important;
+}
+
+
+.remove-item-button {
+
+  border:
+    1px solid
+    rgba(180, 135, 255, 0.2)
+    !important;
+
+  background:
+    rgba(30, 18, 49, 0.55)
+    !important;
+
+  color: #b6aabd !important;
+}
+
+
+.remove-item-button:hover:not(:disabled) {
+
+  border-color:
+    rgba(220, 95, 105, 0.4)
+    !important;
+
+  color: #ff858e !important;
+
+  background:
+    rgba(150, 30, 50, 0.1)
+    !important;
+}
+
+
+.add-item-button {
+
+  background:
+    linear-gradient(
+      135deg,
+      #7341e8,
+      #a354ff
+    ) !important;
+
+  box-shadow:
+    0 10px 28px
+    rgba(125, 65, 245, 0.24);
+}
+
+
+.add-item-button:hover {
+
+  background:
+    linear-gradient(
+      135deg,
+      #8150f2,
+      #b267ff
+    ) !important;
+
+  box-shadow:
+    0 12px 35px
+    rgba(138, 74, 255, 0.38);
+}
+
+
+/* =====================================================
+   STATUS
+   ===================================================== */
+
+.shopping-status {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  margin-top: 16px;
+
+  padding: 12px;
+
+  border-radius: 12px;
+
+  border:
+    1px solid
+    rgba(166, 117, 255, 0.18);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(118, 57, 230, 0.08),
+      rgba(166, 82, 255, 0.12)
+    );
+
+  color: #c4aaff;
+
+  font-size: 12px;
+
+  font-weight: 600;
+}
+
+
+.shopping-status svg {
+
+  color: #c28aff;
+
+  filter:
+    drop-shadow(
+      0 0 7px
+      rgba(191, 126, 255, 0.7)
+    );
+}
+
+
+/* =====================================================
+   TOTAL
+   ===================================================== */
+
+.shopping-total {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin-top: 19px;
+
+  padding-top: 17px;
+
+  border-top:
+    1px solid
+    rgba(150, 120, 190, 0.13);
+
+  color: #9991a7;
+
+  font-size: 13px;
+
+  font-weight: 600;
+}
+
+
+.total-price {
+
+  color: #ffc276;
+
+  font-size: 29px;
+
+  font-weight: 800;
+
+  text-shadow:
+    0 0 20px
+    rgba(255, 178, 98, 0.2);
+}
+
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+.shopping-card-footer {
+
+  padding:
+    14px 26px 22px
+    !important;
+
+  border-top:
+    1px solid
+    rgba(150, 120, 190, 0.1);
+
+  background:
+    rgba(5, 3, 16, 0.25);
+}
+
+
+.reset-wrapper {
+
+  width: 100%;
+}
+
+
+.reset-cart-button {
+
+  width: 100%;
+
+  height: 43px !important;
+
+  border-radius:
+    12px !important;
+
+  border:
+    1px solid
+    rgba(150, 120, 190, 0.12)
+    !important;
+
+  color: #746c80 !important;
+
+  transition:
+    all 0.3s ease;
+}
+
+
+.reset-cart-button:hover:not(:disabled) {
+
+  color: #ff8992 !important;
+
+  background:
+    rgba(200, 50, 70, 0.07)
+    !important;
+
+  border-color:
+    rgba(220, 80, 95, 0.25)
+    !important;
+}
+
+
+/* =====================================================
+   BOTTOM STATUS
+   ===================================================== */
+
+.shopping-bottom-status {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 18px;
+
+  color: #6e6879;
+
+  font-size: 10px;
+
+  letter-spacing: 0.05em;
+}
+
+
+.online-dot {
+
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #49e6a1;
+
+  box-shadow:
+    0 0 12px #49e6a1;
+
+  animation:
+    onlinePulse
+    2s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes onlinePulse {
+
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.4);
+  }
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 600px) {
+
+  .shopping-page {
+    padding:
+      30px 14px;
+  }
+
+
+  .shopping-heading h1 {
+
+    font-size: 36px;
+  }
+
+
+  .shopping-heading p {
+
+    font-size: 12px;
+  }
+
+
+  .shopping-card {
+
+    border-radius:
+      22px !important;
+  }
+
+
+  .shopping-card-header {
+
+    padding:
+      20px 18px 14px
+      !important;
+
+    align-items:
+      flex-start;
+  }
+
+
+  .shopping-card-content {
+
+    padding:
+      17px 18px 22px
+      !important;
+  }
+
+
+  .shopping-card-footer {
+
+    padding:
+      13px 18px 18px
+      !important;
+  }
+
+
+  .shopping-card-title {
+
+    font-size:
+      16px !important;
+  }
+
+
+  .shopping-card-description {
+
+    font-size:
+      9px !important;
+  }
+
+
+  .shopping-icon-box {
+
+    width: 42px;
+    height: 42px;
+  }
+
+
+  .shopping-cart-badge {
+
+    font-size: 9px;
+  }
+
+
+  .product-card {
+
+    padding: 14px;
+  }
+
+
+  .product-icon {
+
+    width: 48px;
+    height: 48px;
+  }
+
+
+  .shopping-controls {
+
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .shopping-background-image {
+
+    background-position:
+      60% center;
+  }
+
+}
+
+
+@media (max-width: 400px) {
+
+  .shopping-title-area {
+
+    gap: 8px;
+  }
+
+
+  .shopping-card-title {
+
+    font-size:
+      14px !important;
+  }
+
+
+  .shopping-cart-badge {
+
+    display: none !important;
+  }
+
+
+  .product-left h3 {
+
+    font-size:
+      12px;
+  }
+
+
+  .product-quantity strong {
+
+    font-size:
+      25px;
+  }
+
+}
+
+
+/* =====================================================
+   ACCESSIBILITY
+   ===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .shopping-background-image,
+  .shopping-light,
+  .shopping-particle,
+  .shopping-icon-box,
+  .shopping-heading h1 span,
+  .online-dot {
+
+    animation: none !important;
+  }
+
+}
+
+/* =====================================================
+   WORKOUT TRACKER
+   Cinematic Fitness UI
+   ===================================================== */
+
+.workout-page {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 45px 20px;
+
+  background: #050507;
+
+  color: white;
+}
+
+
+/* =====================================================
+   CINEMATIC BACKGROUND
+   ===================================================== */
+
+.workout-background {
+  position: fixed;
+
+  inset: 0;
+
+  overflow: hidden;
+
+  z-index: 0;
+}
+
+
+/*
+   Real gym/workout image.
+
+   The image slowly moves using CSS so it feels
+   similar to a cinematic video background.
+*/
+
+.workout-background-image {
+  position: absolute;
+
+  inset: -6%;
+
+  background-image:
+    url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=2200&q=85");
+
+  background-size: cover;
+
+  background-position: center;
+
+  filter:
+    saturate(1.15)
+    contrast(1.12)
+    brightness(0.65);
+
+  transform: scale(1.05);
+
+  animation:
+    workoutCinematicZoom
+    18s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+
+@keyframes workoutCinematicZoom {
+
+  0% {
+    transform: scale(1.05);
+
+    background-position:
+      48% 50%;
+  }
+
+  50% {
+    transform: scale(1.12);
+
+    background-position:
+      53% 47%;
+  }
+
+  100% {
+    transform: scale(1.07);
+
+    background-position:
+      47% 53%;
+  }
+
+}
+
+
+/* =====================================================
+   CINEMATIC OVERLAY
+   ===================================================== */
+
+.workout-background-overlay {
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+
+    radial-gradient(
+      circle at 75% 35%,
+      rgba(150, 55, 255, 0.25),
+      transparent 35%
+    ),
+
+    radial-gradient(
+      circle at 15% 80%,
+      rgba(255, 65, 45, 0.15),
+      transparent 30%
+    ),
+
+    linear-gradient(
+      90deg,
+      rgba(3, 3, 7, 0.96),
+      rgba(7, 4, 12, 0.78),
+      rgba(3, 3, 6, 0.93)
+    );
+
+  backdrop-filter:
+    blur(2px);
+}
+
+
+/* =====================================================
+   MOVING LIGHTS
+   ===================================================== */
+
+.workout-light {
+
+  position: absolute;
+
+  width: 420px;
+  height: 420px;
+
+  border-radius: 50%;
+
+  filter: blur(110px);
+
+  opacity: 0.2;
+
+  pointer-events: none;
+
+  animation:
+    workoutLightMove
+    10s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+
+.workout-light-one {
+
+  top: -180px;
+
+  left: -100px;
+
+  background:
+    #8b35ff;
+}
+
+
+.workout-light-two {
+
+  right: -180px;
+
+  bottom: -150px;
+
+  background:
+    #ff452d;
+
+  animation-delay:
+    2s;
+}
+
+
+@keyframes workoutLightMove {
+
+  0% {
+    transform:
+      translate(0, 0)
+      scale(1);
+  }
+
+  50% {
+    transform:
+      translate(80px, 60px)
+      scale(1.15);
+  }
+
+  100% {
+    transform:
+      translate(-40px, 100px)
+      scale(0.9);
+  }
+
+}
+
+
+/* =====================================================
+   FLOATING PARTICLES
+   ===================================================== */
+
+.workout-particle {
+
+  position: absolute;
+
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+
+  background:
+    #c28cff;
+
+  box-shadow:
+    0 0 12px
+    rgba(172, 105, 255, 0.9);
+
+  animation:
+    workoutParticleFloat
+    7s
+    ease-in-out
+    infinite;
+}
+
+
+.workout-particle-1 {
+  top: 15%;
+  left: 12%;
+}
+
+
+.workout-particle-2 {
+  top: 25%;
+  right: 15%;
+
+  animation-delay: 1s;
+}
+
+
+.workout-particle-3 {
+  bottom: 20%;
+  left: 10%;
+
+  animation-delay: 2s;
+}
+
+
+.workout-particle-4 {
+  bottom: 25%;
+  right: 12%;
+
+  animation-delay: 3s;
+}
+
+
+.workout-particle-5 {
+  top: 60%;
+  left: 80%;
+
+  animation-delay: 4s;
+}
+
+
+.workout-particle-6 {
+  top: 45%;
+  left: 8%;
+
+  animation-delay: 1.5s;
+}
+
+
+@keyframes workoutParticleFloat {
+
+  0%,
+  100% {
+
+    transform:
+      translateY(0)
+      scale(1);
+
+    opacity: 0.25;
+  }
+
+  50% {
+
+    transform:
+      translateY(-35px)
+      scale(1.5);
+
+    opacity: 1;
+  }
+
+}
+
+
+/* =====================================================
+   MAIN CONTAINER
+   ===================================================== */
+
+.workout-container {
+
+  position: relative;
+
+  z-index: 5;
+
+  width: 100%;
+
+  max-width: 560px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+}
+
+
+/* =====================================================
+   TOP LABEL
+   ===================================================== */
+
+.workout-top-label {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  padding:
+    8px 15px;
+
+  border-radius:
+    999px;
+
+  border:
+    1px solid
+    rgba(180, 120, 255, 0.25);
+
+  background:
+    rgba(45, 18, 75, 0.45);
+
+  backdrop-filter:
+    blur(15px);
+
+  color:
+    #c19aff;
+
+  font-size:
+    9px;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    0.18em;
+
+  box-shadow:
+    0 0 30px
+    rgba(135, 65, 255, 0.1);
+}
+
+
+/* =====================================================
+   HERO HEADING
+   ===================================================== */
+
+.workout-heading {
+
+  text-align:
+    center;
+
+  margin:
+    20px 0 28px;
+}
+
+
+.workout-heading h1 {
+
+  margin: 0;
+
+  font-size:
+    clamp(36px, 7vw, 54px);
+
+  line-height:
+    0.98;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    -0.055em;
+}
+
+
+.workout-heading h1 span {
+
+  background:
+    linear-gradient(
+      90deg,
+      #9b55ff,
+      #ff6849,
+      #ffb15e,
+      #9b55ff
+    );
+
+  background-size:
+    250% auto;
+
+  -webkit-background-clip:
+    text;
+
+  background-clip:
+    text;
+
+  color:
+    transparent;
+
+  animation:
+    workoutGradient
+    5s
+    linear
+    infinite;
+}
+
+
+.workout-heading h1 strong {
+
+  color:
+    #ffffff;
+}
+
+
+@keyframes workoutGradient {
+
+  to {
+    background-position:
+      250% center;
+  }
+
+}
+
+
+.workout-heading p {
+
+  max-width:
+    430px;
+
+  margin:
+    13px auto 0;
+
+  color:
+    #9994a5;
+
+  font-size:
+    12px;
+
+  line-height:
+    1.65;
+}
+
+
+/* =====================================================
+   CARD WRAPPER
+   ===================================================== */
+
+.workout-card-wrapper {
+
+  width:
+    100%;
+}
+
+
+/* =====================================================
+   MAIN CARD
+   ===================================================== */
+
+.workout-card {
+
+  position:
+    relative;
+
+  overflow:
+    hidden;
+
+  width:
+    100%;
+
+  border-radius:
+    28px !important;
+
+  border:
+    1px solid
+    rgba(190, 130, 255, 0.22)
+    !important;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(21, 12, 35, 0.91),
+      rgba(5, 5, 10, 0.95)
+    ) !important;
+
+  backdrop-filter:
+    blur(28px);
+
+  box-shadow:
+
+    0 35px 100px
+    rgba(0, 0, 0, 0.65),
+
+    0 0 80px
+    rgba(127, 52, 255, 0.12);
+
+  color:
+    white !important;
+}
+
+
+/* =====================================================
+   CARD GLOW
+   ===================================================== */
+
+.workout-card-glow {
+
+  position:
+    absolute;
+
+  width:
+    300px;
+
+  height:
+    300px;
+
+  top:
+    -190px;
+
+  right:
+    -100px;
+
+  border-radius:
+    50%;
+
+  background:
+    #9b42ff;
+
+  filter:
+    blur(110px);
+
+  opacity:
+    0.2;
+
+  pointer-events:
+    none;
+}
+
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+
+.workout-card-header {
+
+  position:
+    relative;
+
+  display:
+    flex !important;
+
+  align-items:
+    center;
+
+  gap:
+    13px;
+
+  padding:
+    25px 26px 19px
+    !important;
+
+  border-bottom:
+    1px solid
+    rgba(160, 130, 200, 0.1);
+}
+
+
+.workout-icon-box {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  width:
+    52px;
+
+  height:
+    52px;
+
+  flex-shrink:
+    0;
+
+  border-radius:
+    16px;
+
+  color:
+    white;
+
+  background:
+    linear-gradient(
+      135deg,
+      #893fff,
+      #5420ad
+    );
+
+  box-shadow:
+    0 12px 30px
+    rgba(128, 55, 255, 0.3);
+}
+
+
+.workout-header-text {
+
+  flex:
+    1;
+}
+
+
+.workout-card-title {
+
+  color:
+    #ffffff !important;
+
+  font-size:
+    20px !important;
+
+  font-weight:
+    800 !important;
+}
+
+
+.workout-card-subtitle {
+
+  margin-top:
+    3px;
+
+  color:
+    #858091;
+
+  font-size:
+    10px;
+}
+
+
+.workout-live-badge {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    6px;
+
+  padding:
+    5px 8px;
+
+  border-radius:
+    999px;
+
+  color:
+    #8affbf;
+
+  background:
+    rgba(44, 180, 105, 0.08);
+
+  border:
+    1px solid
+    rgba(74, 210, 130, 0.18);
+
+  font-size:
+    8px;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    0.1em;
+}
+
+
+.workout-live-badge span {
+
+  width:
+    6px;
+
+  height:
+    6px;
+
+  border-radius:
+    50%;
+
+  background:
+    #4cff9b;
+
+  box-shadow:
+    0 0 10px
+    #4cff9b;
+
+  animation:
+    workoutLivePulse
+    1.7s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes workoutLivePulse {
+
+  0%,
+  100% {
+    opacity:
+      0.4;
+
+    transform:
+      scale(1);
+  }
+
+  50% {
+    opacity:
+      1;
+
+    transform:
+      scale(1.45);
+  }
+
+}
+
+
+/* =====================================================
+   CARD CONTENT
+   ===================================================== */
+
+.workout-card-content {
+
+  padding:
+    21px 26px 25px
+    !important;
+}
+
+
+/* =====================================================
+   INPUT
+   ===================================================== */
+
+.workout-input-section {
+
+  margin-bottom:
+    12px;
+}
+
+
+.workout-label-row {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  margin-bottom:
+    8px;
+}
+
+
+.workout-label-row label {
+
+  color:
+    #aaa3b5;
+
+  font-size:
+    11px;
+
+  font-weight:
+    700;
+
+  text-transform:
+    uppercase;
+
+  letter-spacing:
+    0.12em;
+}
+
+
+.workout-focus-button {
+
+  height:
+    28px !important;
+
+  padding:
+    0 8px !important;
+
+  color:
+    #b894ff !important;
+
+  font-size:
+    10px !important;
+}
+
+
+.workout-focus-button:hover {
+
+  color:
+    #d5bcff !important;
+
+  background:
+    rgba(137, 62, 255, 0.1)
+    !important;
+}
+
+
+.workout-input-wrapper {
+
+  position:
+    relative;
+}
+
+
+.workout-input-icon {
+
+  position:
+    absolute;
+
+  left:
+    14px;
+
+  top:
+    50%;
+
+  z-index:
+    2;
+
+  transform:
+    translateY(-50%);
+
+  color:
+    #865bc7;
+
+  pointer-events:
+    none;
+}
+
+
+.workout-input {
+
+  height:
+    48px !important;
+
+  padding-left:
+    41px !important;
+
+  border-radius:
+    13px !important;
+
+  border:
+    1px solid
+    rgba(155, 110, 210, 0.18)
+    !important;
+
+  background:
+    rgba(3, 3, 8, 0.72)
+    !important;
+
+  color:
+    white !important;
+
+  transition:
+    all 0.3s ease;
+}
+
+
+.workout-input::placeholder {
+
+  color:
+    #5c5865 !important;
+}
+
+
+.workout-input:focus {
+
+  border-color:
+    #9b55ff !important;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(155, 85, 255, 0.12),
+
+    0 0 30px
+    rgba(137, 65, 255, 0.12)
+    !important;
+}
+
+
+/* =====================================================
+   ACTIVE EXERCISE
+   ===================================================== */
+
+.exercise-active {
+
+  overflow:
+    hidden;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  gap:
+    10px;
+
+  margin:
+    9px 0 14px;
+
+  padding:
+    9px 12px;
+
+  border-radius:
+    10px;
+
+  border:
+    1px solid
+    rgba(145, 81, 255, 0.13);
+
+  background:
+    rgba(123, 53, 255, 0.06);
+}
+
+
+.exercise-active span {
+
+  color:
+    #756d80;
+
+  font-size:
+    8px;
+
+  letter-spacing:
+    0.13em;
+
+  font-weight:
+    700;
+}
+
+
+.exercise-active strong {
+
+  max-width:
+    65%;
+
+  overflow:
+    hidden;
+
+  text-overflow:
+    ellipsis;
+
+  white-space:
+    nowrap;
+
+  color:
+    #c5a7ff;
+
+  font-size:
+    11px;
+}
+
+
+/* =====================================================
+   COUNTER
+   ===================================================== */
+
+.workout-counter {
+
+  position:
+    relative;
+
+  overflow:
+    hidden;
+
+  padding:
+    22px 20px 19px;
+
+  border-radius:
+    19px;
+
+  border:
+    1px solid
+    rgba(160, 110, 230, 0.16);
+
+  background:
+    radial-gradient(
+      circle at 50% 20%,
+      rgba(130, 62, 255, 0.13),
+      transparent 55%
+    ),
+
+    rgba(4, 4, 10, 0.7);
+
+  text-align:
+    center;
+}
+
+
+.workout-counter::before {
+
+  content:
+    "";
+
+  position:
+    absolute;
+
+  left:
+    -20%;
+
+  top:
+    0;
+
+  width:
+    140%;
+
+  height:
+    1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(172, 110, 255, 0.6),
+      transparent
+    );
+
+  animation:
+    workoutScan
+    4s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes workoutScan {
+
+  0% {
+    transform:
+      translateX(-30%);
+  }
+
+  50% {
+    transform:
+      translateX(30%);
+  }
+
+  100% {
+    transform:
+      translateX(-30%);
+  }
+
+}
+
+
+.counter-top {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  gap:
+    7px;
+
+  color:
+    #77717f;
+
+  font-size:
+    9px;
+
+  font-weight:
+    700;
+
+  text-transform:
+    uppercase;
+
+  letter-spacing:
+    0.17em;
+}
+
+
+.counter-top svg {
+
+  color:
+    #7e708e;
+}
+
+
+.counter-top .flame-active {
+
+  color:
+    #ff684d;
+
+  filter:
+    drop-shadow(
+      0 0 8px
+      rgba(255, 85, 55, 0.7)
+    );
+}
+
+
+.sets-number {
+
+  margin:
+    7px 0 3px;
+
+  color:
+    #b27cff;
+
+  font-size:
+    72px;
+
+  line-height:
+    1;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    -0.07em;
+
+  text-shadow:
+    0 0 35px
+    rgba(160, 91, 255, 0.35);
+}
+
+
+.workout-message {
+
+  margin:
+    5px 0 17px;
+
+  color:
+    #c0bac9;
+
+  font-size:
+    12px;
+
+  font-weight:
+    600;
+}
+
+
+/* =====================================================
+   PROGRESS
+   ===================================================== */
+
+.workout-progress-wrapper {
+
+  width:
+    100%;
+
+  max-width:
+    340px;
+
+  margin:
+    auto;
+}
+
+
+.workout-progress-label {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  margin-bottom:
+    7px;
+
+  color:
+    #706979;
+
+  font-size:
+    8px;
+
+  text-transform:
+    uppercase;
+
+  letter-spacing:
+    0.1em;
+}
+
+
+.workout-progress {
+
+  overflow:
+    hidden;
+
+  width:
+    100%;
+
+  height:
+    5px;
+
+  border-radius:
+    999px;
+
+  background:
+    rgba(255,255,255,0.07);
+}
+
+
+.workout-progress-fill {
+
+  height:
+    100%;
+
+  min-width:
+    0;
+
+  border-radius:
+    inherit;
+
+  background:
+    linear-gradient(
+      90deg,
+      #7038e5,
+      #ae62ff,
+      #ff634b
+    );
+
+  box-shadow:
+    0 0 15px
+    rgba(164, 84, 255, 0.65);
+}
+
+
+/* =====================================================
+   GOAL COMPLETED
+   ===================================================== */
+
+.goal-completed {
+
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  gap:
+    7px;
+
+  margin-top:
+    14px;
+
+  padding:
+    7px 12px;
+
+  border-radius:
+    999px;
+
+  border:
+    1px solid
+    rgba(66, 226, 132, 0.25);
+
+  background:
+    rgba(52, 210, 120, 0.08);
+
+  color:
+    #66f0a2;
+
+  font-size:
+    9px;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    0.1em;
+
+  box-shadow:
+    0 0 25px
+    rgba(48, 220, 118, 0.08);
+}
+
+
+/* =====================================================
+   BUTTONS
+   ===================================================== */
+
+.workout-controls {
+
+  display:
+    grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:
+    12px;
+
+  margin-top:
+    17px;
+}
+
+
+.workout-controls > div {
+
+  width:
+    100%;
+}
+
+
+.complete-set-button,
+.remove-set-button {
+
+  width:
+    100%;
+
+  height:
+    49px !important;
+
+  border-radius:
+    13px !important;
+
+  font-weight:
+    700 !important;
+}
+
+
+.complete-set-button {
+
+  color:
+    white !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      #7638e8,
+      #a04dff
+    ) !important;
+
+  box-shadow:
+    0 12px 30px
+    rgba(117, 55, 235, 0.27);
+}
+
+
+.complete-set-button:hover {
+
+  background:
+    linear-gradient(
+      135deg,
+      #8449f3,
+      #ad61ff
+    ) !important;
+
+  box-shadow:
+    0 14px 35px
+    rgba(137, 69, 255, 0.4);
+}
+
+
+.remove-set-button {
+
+  border:
+    1px solid
+    rgba(160, 130, 190, 0.17)
+    !important;
+
+  background:
+    rgba(15, 12, 22, 0.65)
+    !important;
+
+  color:
+    #aaa3b2 !important;
+}
+
+
+.remove-set-button:hover:not(:disabled) {
+
+  border-color:
+    rgba(220, 90, 100, 0.4)
+    !important;
+
+  color:
+    #ff8b91 !important;
+
+  background:
+    rgba(180, 45, 55, 0.08)
+    !important;
+}
+
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+.workout-card-footer {
+
+  padding:
+    14px 26px 21px
+    !important;
+
+  border-top:
+    1px solid
+    rgba(150, 120, 190, 0.1);
+}
+
+
+.workout-reset-wrapper {
+
+  width:
+    100%;
+}
+
+
+.reset-workout-button {
+
+  width:
+    100%;
+
+  height:
+    43px !important;
+
+  border-radius:
+    11px !important;
+
+  color:
+    #716b78 !important;
+
+  border:
+    1px solid
+    rgba(150, 120, 190, 0.09)
+    !important;
+
+  transition:
+    all 0.3s ease;
+}
+
+
+.reset-workout-button:hover {
+
+  color:
+    #ff858d !important;
+
+  background:
+    rgba(190, 50, 65, 0.07)
+    !important;
+
+  border-color:
+    rgba(220, 70, 85, 0.22)
+    !important;
+}
+
+
+/* =====================================================
+   BOTTOM STATUS
+   ===================================================== */
+
+.workout-bottom-status {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    8px;
+
+  margin-top:
+    17px;
+
+  color:
+    #625d69;
+
+  font-size:
+    9px;
+
+  letter-spacing:
+    0.06em;
+}
+
+
+.workout-status-dot {
+
+  width:
+    7px;
+
+  height:
+    7px;
+
+  border-radius:
+    50%;
+
+  background:
+    #55e998;
+
+  box-shadow:
+    0 0 12px
+    #55e998;
+
+  animation:
+    workoutStatusPulse
+    2s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes workoutStatusPulse {
+
+  0%,
+  100% {
+    opacity:
+      0.45;
+
+    transform:
+      scale(1);
+  }
+
+  50% {
+    opacity:
+      1;
+
+    transform:
+      scale(1.4);
+  }
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 600px) {
+
+  .workout-page {
+
+    padding:
+      30px 14px;
+  }
+
+
+  .workout-heading h1 {
+
+    font-size:
+      38px;
+  }
+
+
+  .workout-heading p {
+
+    font-size:
+      11px;
+  }
+
+
+  .workout-card {
+
+    border-radius:
+      23px !important;
+  }
+
+
+  .workout-card-header {
+
+    padding:
+      20px 18px 16px
+      !important;
+  }
+
+
+  .workout-card-content {
+
+    padding:
+      18px 18px 22px
+      !important;
+  }
+
+
+  .workout-card-footer {
+
+    padding:
+      13px 18px 18px
+      !important;
+  }
+
+
+  .workout-card-title {
+
+    font-size:
+      17px !important;
+  }
+
+
+  .workout-card-subtitle {
+
+    font-size:
+      9px;
+  }
+
+
+  .workout-icon-box {
+
+    width:
+      45px;
+
+    height:
+      45px;
+  }
+
+
+  .workout-live-badge {
+
+    display:
+      none;
+  }
+
+
+  .sets-number {
+
+    font-size:
+      62px;
+  }
+
+
+  .workout-controls {
+
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .workout-background-image {
+
+    background-position:
+      58% center;
+  }
+
+}
+
+
+@media (max-width: 400px) {
+
+  .workout-heading h1 {
+
+    font-size:
+      34px;
+  }
+
+
+  .workout-card-header {
+
+    gap:
+      9px;
+  }
+
+
+  .workout-card-title {
+
+    font-size:
+      15px !important;
+  }
+
+
+  .sets-number {
+
+    font-size:
+      57px;
+  }
+
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+   ===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .workout-background-image,
+  .workout-light,
+  .workout-particle,
+  .workout-icon-box,
+  .workout-heading h1 span,
+  .workout-live-badge span,
+  .workout-counter::before,
+  .workout-status-dot {
+
+    animation:
+      none !important;
+  }
+
+}
